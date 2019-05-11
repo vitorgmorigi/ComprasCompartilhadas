@@ -5,6 +5,7 @@
  */
 package ejb;
 
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -27,11 +28,24 @@ public class UsuarioFachada {
         em.persist(object);
     }
     
-        // Metodo que retorna a lista de clientes armazenada na tabela Clientes
+        // Metodo que retorna a lista de usuarios armazenada na tabela Usuario
     public List<ejb.Usuario> getListaUsuarios() {
         Query query = em.createNamedQuery("Usuario.findAll");
         return query.getResultList();
     }
+    
+public int getMaxId() {  // pega o maior ID de usuário na tabela
+    
+   Query query = em.createNativeQuery("SELECT MAX(id) FROM USUARIO");
+   BigDecimal a = (BigDecimal) query.getSingleResult();
+   int b = a.intValue();
+   return b;
+}
+ 
+public void cadastrarUsuario(Usuario usuario) {  // Cadastra o usuario 
+   usuario.setId(getMaxId()+1);
+   em.persist(usuario);
+}
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")

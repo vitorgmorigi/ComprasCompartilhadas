@@ -21,7 +21,11 @@ public class UsuarioMBean {
 
     @EJB
     private UsuarioFachada usuarioFachada;
-             public List<Usuario> getListaUsuarios() {
+    
+    private Usuario usuario = new Usuario();  // Guarda os dados do formulário
+    
+    
+    public List<Usuario> getListaUsuarios() {
         return usuarioFachada.getListaUsuarios();
     }
 
@@ -31,6 +35,22 @@ public class UsuarioMBean {
      */
     public UsuarioMBean() {
     }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
+    public String cadastrarUsuario(){
+        usuarioFachada.cadastrarUsuario(usuario);
+        usuario = new Usuario();
+        return "index";        
+    }
+    
+    
     
     
 

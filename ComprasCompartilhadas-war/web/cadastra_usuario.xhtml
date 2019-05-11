@@ -5,23 +5,9 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Lista de Usuarios</title>
+        <title>Cadastro de Usuário</title>
     </h:head>
     <h:body>
-        <f:view>
-            <h:form>
-                <h1><h:outputText value="Lista de Usuários"/></h1>
-                <p:dataTable var="usuario" value="#{usuarioMBean.listaUsuarios}">
-                   <p:column headerText="Login">
-                      <h:outputText value="#{usuario.login}" />
-                   </p:column>
-                   <p:column headerText="E-mail">
-                      <h:outputText value="#{usuario.email}" />
-                   </p:column>
-                </p:dataTable>
-            </h:form>
-            
-            
            <h3>Cadastrar Usuario</h3>
            <h:outputLabel value = "Login" /> 
            <h:inputText id="login" value="#{usuarioMBean.usuario.login}"/>
@@ -34,8 +20,6 @@
            
            <br></br>
            <h:commandButton id="botao" value="Cadastrar" action="#{usuarioMBean.cadastrarUsuario()}"/>
-
-
-        </f:view>
     </h:body>
 </html>
+
