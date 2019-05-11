@@ -28,7 +28,7 @@ public class UsuarioFachada {
     }
     
         // Metodo que retorna a lista de clientes armazenada na tabela Clientes
-    public List<ejb.Usuario> getListaUsuario() {
+    public List<ejb.Usuario> getListaUsuarios() {
         Query query = em.createNamedQuery("Usuario.findAll");
         return query.getResultList();
     }
