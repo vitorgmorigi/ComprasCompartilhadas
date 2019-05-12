@@ -50,7 +50,16 @@ public class UsuarioMBean {
         return "index";        
     }
     
-    
+    public String salvarUsuario() {
+        usuarioFachada.salvarUsuario(this.usuario);
+        return "index";
+    }
+
+    public String removerUsuario(Integer usuarioId) {
+        usuarioFachada.removerUsuario(usuarioId);
+        return "index";
+    }
+
     
     
 

@@ -47,6 +47,15 @@ public void cadastrarUsuario(Usuario usuario) {  // Cadastra o usuario
    em.persist(usuario);
 }
 
+public void salvarUsuario(Usuario usuario) {
+    em.merge(usuario);
+    em.flush();
+}
+
+    public void removerUsuario(Integer usuarioId) {
+        em.remove(em.find(Usuario.class, usuarioId));
+    }
+
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 }
