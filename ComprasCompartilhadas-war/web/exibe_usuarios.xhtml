@@ -12,20 +12,24 @@
             <h:form>
                 <h1><h:outputText value="Lista de Usuários"/></h1>
                 <p:dataTable var="usuario" value="#{usuarioMBean.listaUsuarios}">
+                   <p:column headerText="Id">
+                      <h:inputText value="#{usuario.id}" />
+                   </p:column>
                    <p:column headerText="Login">
-                      <h:outputText value="#{usuario.login}" />
+                      <h:inputText value="#{usuario.login}" />
                    </p:column>
                    <p:column headerText="E-mail">
-                      <h:outputText value="#{usuario.email}" />
+                      <h:inputText value="#{usuario.email}" />
                    </p:column>
                 </p:dataTable>
             </h:form>
             
         <h:form>
-            <h:commandButton id="cadastrar" value="Cadastrar novo usuário" action="cadastra_usuario" styleClass="ui-priority-primary"/>  
-           <h:commandButton id="voltar" value="Voltar" action="index"/>
+           <p:commandButton id="cadastrar" value="Cadastrar novo usuário" action="cadastra_usuario" styleClass="ui-priority-primary"/>  
+           <p:commandButton id="editar" value="Editar usuário" action="edita_usuario" styleClass="ui-priority-primary"/>
+           <p:commandButton id="remover" value="Remover usuário" action="remove_usuario" styleClass="ui-priority-primary"/>
+           <p><p:link id="voltar" value="Voltar" outcome="index"/></p>
         </h:form>
-
         </f:view>
     </h:body>
 </html>
