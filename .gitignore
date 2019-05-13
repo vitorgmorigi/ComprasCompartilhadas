@@ -1,3 +1,6 @@
 /ComprasCompartilhadas-ejb/build/
 /ComprasCompartilhadas-war/build/
 /ComprasCompartilhadas-ejb/dist/
+/build/
+/dist/
+/ComprasCompartilhadas-war/dist/

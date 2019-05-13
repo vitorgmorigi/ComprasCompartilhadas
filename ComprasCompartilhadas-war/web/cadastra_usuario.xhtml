@@ -10,25 +10,23 @@
     <h:body>
         
         <h:form>
-           <h3>Cadastrar Usuario</h3>
-           <h:outputLabel value = "Login" /> 
-           <h:inputText id="login" value="#{usuarioMBean.usuario.login}"/>
-           <br></br>
-           <h:outputLabel value = "Email" /> 
-           <h:inputText id="email" value="#{usuarioMBean.usuario.email}"/>
-           <br></br>
-           <h:outputLabel value = "Senha" /> 
-           <h:inputSecret id="senha" value="#{usuarioMBean.usuario.senha}"/>
-           <br></br>
+           <p><h3>Cadastrar Usuário</h3></p>
+           <p><h:outputLabel value = "Login" /> </p>
+           <p><h:inputText id="login" value="#{usuarioMBean.usuario.login}"/></p>
+           
+           <p><h:outputLabel value = "Email" /></p>
+           <p><h:inputText id="email" value="#{usuarioMBean.usuario.email}"/></p>
+           
+           <p><h:outputLabel value = "Senha" /> </p>
+           <p><h:inputSecret id="senha" value="#{usuarioMBean.usuario.senha}"/></p>
+           <p:commandButton id="cadastrar" value="Cadastrar" action="#{usuarioMBean.cadastrarUsuario()}" styleClass="ui-priority-primary"/>           
 
         </h:form>
         
-        
         <h:form>
-           <h:commandButton id="voltar" value="Voltar" action="index"/>
-           <h:commandButton value="Cadastrar" type="submit" action="#{usuarioMBean.cadastrarUsuario()}"/>
-        </h:form>
-           
+            <p> <p:link id="voltar" value="Voltar" outcome="index" styleClass="ui-priority-primary"/></p>
+
+        </h:form> 
 
     </h:body>
 </html>

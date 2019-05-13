@@ -3,7 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/55489/Documents/GitHub/ComprasCompartilhadas/ComprasCompartilhadas-ejb/src/java/ejb/Produto.java</file>
+            <file>file:/C:/Users/55489/Documents/GitHub/ComprasCompartilhadas/ComprasCompartilhadas-ejb/src/java/ejb/ProdutoFachada.java</file>
             <file>file:/C:/Users/55489/Documents/GitHub/ComprasCompartilhadas/ComprasCompartilhadas-ejb/src/java/ejb/Usuario.java</file>
+            <file>file:/C:/Users/55489/Documents/GitHub/ComprasCompartilhadas/ComprasCompartilhadas-ejb/src/java/ejb/ListaComprasFachada.java</file>
+            <file>file:/C:/Users/55489/Documents/GitHub/ComprasCompartilhadas/ComprasCompartilhadas-ejb/src/java/ejb/ListaCompras.java</file>
             <file>file:/C:/Users/55489/Documents/GitHub/ComprasCompartilhadas/ComprasCompartilhadas-ejb/src/java/ejb/UsuarioFachada.java</file>
         </group>
     </open-files>

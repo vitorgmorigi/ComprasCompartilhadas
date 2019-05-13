@@ -38,8 +38,11 @@ public int getMaxId() {  // pega o maior ID de usuário na tabela
     
    Query query = em.createNativeQuery("SELECT MAX(id) FROM USUARIO");
    BigDecimal a = (BigDecimal) query.getSingleResult();
-   int b = a.intValue();
-   return b;
+   if(a != null)
+       return a.intValue();
+   else
+       return 0;
+  
 }
  
 public void cadastrarUsuario(Usuario usuario) {  // Cadastra o usuario 

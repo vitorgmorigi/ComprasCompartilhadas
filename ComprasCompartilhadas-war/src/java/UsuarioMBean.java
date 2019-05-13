@@ -10,17 +10,20 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author 55489
  */
-@Named(value = "usuarioMBean")
-@Dependent
+@ManagedBean (name = "usuarioMBean")
+@SessionScoped
 public class UsuarioMBean {
 
     @EJB
     private UsuarioFachada usuarioFachada;
+
     
     private Usuario usuario = new Usuario();  // Guarda os dados do formulário
     
