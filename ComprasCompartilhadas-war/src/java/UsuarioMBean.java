@@ -8,8 +8,6 @@ import ejb.Usuario;
 import ejb.UsuarioFachada;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 

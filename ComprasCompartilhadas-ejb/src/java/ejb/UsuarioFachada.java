@@ -34,26 +34,26 @@ public class UsuarioFachada {
         return query.getResultList();
     }
     
-public int getMaxId() {  // pega o maior ID de usuário na tabela
-    
-   Query query = em.createNativeQuery("SELECT MAX(id) FROM USUARIO");
-   BigDecimal a = (BigDecimal) query.getSingleResult();
-   if(a != null)
-       return a.intValue();
-   else
-       return 0;
-  
-}
- 
-public void cadastrarUsuario(Usuario usuario) {  // Cadastra o usuario 
-   usuario.setId(getMaxId()+1);
-   em.persist(usuario);
-}
+    public int getMaxId() {  // pega o maior ID de usuário na tabela
 
-public void salvarUsuario(Usuario usuario) {
-    em.merge(usuario);
-    em.flush();
-}
+       Query query = em.createNativeQuery("SELECT MAX(id) FROM USUARIO");
+       BigDecimal a = (BigDecimal) query.getSingleResult();
+       if(a != null)
+           return a.intValue();
+       else
+           return 0;
+
+    }
+ 
+    public void cadastrarUsuario(Usuario usuario) {  // Cadastra o usuario 
+       usuario.setId(getMaxId()+1);
+       em.persist(usuario);
+    }
+
+    public void salvarUsuario(Usuario usuario) {
+        em.merge(usuario);
+        em.flush();
+    }
 
     public void removerUsuario(Integer usuarioId) {
         em.remove(em.find(Usuario.class, usuarioId));
