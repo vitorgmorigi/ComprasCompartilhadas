@@ -33,18 +33,27 @@ public class ListaComprasFachada {
         return query.getResultList();
     }
     
-public int getMaxId() {  // pega o maior ID de lista de compras na tabela
-    
-   Query query = em.createNativeQuery("SELECT MAX(id) FROM LISTA_COMPRAS");
-   BigDecimal a = (BigDecimal) query.getSingleResult();
-   int b = a.intValue();
-   return b;
-}
+    public int getMaxId() {  // pega o maior ID de lista de compras na tabela
+
+       Query query = em.createNativeQuery("SELECT MAX(id) FROM LISTA_COMPRAS");
+       BigDecimal a = (BigDecimal) query.getSingleResult();
+       int b = a.intValue();
+       return b;
+    }
  
-public void cadastrarListaCompras(ListaCompras listaCompras) {  // Cadastra o produto 
-   listaCompras.setId(getMaxId()+1);
-   em.persist(listaCompras);
-}
+    public void criaListaCompras(ListaCompras listaCompras) {  // Cadastra o produto 
+       listaCompras.setId(getMaxId()+1);
+       em.persist(listaCompras);
+    }
+
+    public void salvarListaCompras(ListaCompras listaCompras) {
+        em.merge(listaCompras);
+        em.flush();
+    }
+
+    public void removerListaCompras(Integer listaComprasID) {
+            em.remove(em.find(ListaCompras.class, listaComprasID));
+    }
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 }
