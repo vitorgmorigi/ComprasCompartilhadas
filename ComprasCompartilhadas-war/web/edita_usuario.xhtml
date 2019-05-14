@@ -9,15 +9,15 @@
     </h:head>
     <h:body>
      <h:form>
-            <h1>Editar cliente:</h1>
-            <p>Id</p>
+            <p><h1>Editar cliente:</h1></p>
+            <p><p:outputLabel value = "Id" /> </p>
             <p><p:inputText title="id" value="#{usuarioMBean.usuario.id}" /></p>
-            <p>Login</p>
+            <p><p:outputLabel value = "Login" /> </p>
             <p><p:inputText title="nome" value="#{usuarioMBean.usuario.login}" /></p>
-            <p>E-mail</p>
+            <p><p:outputLabel value = "E-mail" /> </p>
             <p><p:inputText label="E-mail:" value="#{usuarioMBean.usuario.email}" /></p>
-            <p>Senha</p>
-            <p><h:inputSecret label="Senha:" value="#{usuarioMBean.usuario.senha}" /></p>            
+            <p><p:outputLabel value = "Senha" /> </p>
+            <p><p:password label="Senha:" value="#{usuarioMBean.usuario.senha}" /></p>            
             <p><p:commandButton value="Salvar" id="cadastrar" action="#{usuarioMBean.salvarUsuario()}" styleClass="ui-priority-primary" /></p>
         </h:form>
         

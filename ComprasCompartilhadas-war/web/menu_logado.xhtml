@@ -12,14 +12,14 @@
     <h:body>
         <f:view>
             <h:form>
-                <h1><h:outputText value="Sistema de compras compartilhadas"/></h1>
-                <h4><h:outputText value="Bem vindo ao sistema! Selecione a opção desejada:"/></h4>
+                <h1><p:outputLabel value="Sistema de compras compartilhadas"/></h1>
+                <h3><p:outputLabel value="Bem vindo ao sistema #{usuarioMBean.usuario.login}! Selecione a opção desejada:"/></h3>
             </h:form>
             
             <h:form>
                 <p><p:commandButton id="criaListaCompras" value="Criar Lista de Compras" action="cria_lista_compras"/></p>
                 <p><p:commandButton id="exibeListaCompras" value="Exibir Listas criadas" action="exibe_lista_compras"/></p>
-                <p><p:commandButton id="alteraUsuario" value="Alterar dados cadastrais" action="remove_usuario"/></p>
+                <p><p:commandButton id="alteraUsuario" value="Alterar dados cadastrais" action="edita_usuario"/></p>
                 <p><p:commandButton id="logout" value="Fazer Logout" action="index"/></p>
             </h:form>
 

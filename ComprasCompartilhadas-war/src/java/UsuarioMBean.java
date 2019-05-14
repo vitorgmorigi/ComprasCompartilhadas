@@ -76,6 +76,7 @@ public class UsuarioMBean {
            "Erro no Login!"));
       return "index";
     } else {
+            System.out.println(usuario.getLogin());
           return "menu_logado";
     }
     

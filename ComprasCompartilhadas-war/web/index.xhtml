@@ -9,13 +9,16 @@
     </h:head>
     <h:body>
         <h:form>
-           <p><h3>Autenticação</h3></p>
-           <p><h:outputLabel value = "Login" /> </p>
-           <p><h:inputText id="login" value="#{usuarioMBean.usuario.login}"/></p>
-           <p><h:outputLabel value = "Senha" /> </p>
-           <p><h:inputSecret id="senha" value="#{usuarioMBean.usuario.senha}"/></p>
+           <p><h1>Autenticação</h1></p>
+           <p><p:outputLabel value = "Login" /> </p>
+           <p><p:inputText id="login" value="#{usuarioMBean.usuario.login}"/></p>
+           <p><p:outputLabel value = "Senha" /> </p>
+           <p><p:password id="senha" value="#{usuarioMBean.usuario.senha}"/></p>
            <p><p:commandButton id="logar" value="Logar" action="#{usuarioMBean.logar()}" styleClass="ui-priority-primary"/></p>
-           <p><p:commandButton id="cadastrar" value="Cadastre-se" action="cadastra_usuario" styleClass="ui-priority-primary"/></p>
+        </h:form>
+        
+        <h:form>
+            <p><p:commandButton id="cadastrar" value="Cadastre-se" action="cadastra_usuario" styleClass="ui-priority-primary"/></p>   
         </h:form>
         
         <h:form>

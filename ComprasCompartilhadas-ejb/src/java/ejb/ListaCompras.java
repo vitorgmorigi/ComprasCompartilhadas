@@ -6,16 +6,20 @@
 package ejb;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -29,6 +33,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "ListaCompras.findById", query = "SELECT l FROM ListaCompras l WHERE l.id = :id")
     , @NamedQuery(name = "ListaCompras.findByIdUsuario", query = "SELECT l FROM ListaCompras l WHERE l.idUsuario = :idUsuario")})
 public class ListaCompras implements Serializable {
+
+    @Size(max = 255)
+    @Column(name = "NOME")
+    private String nome;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "listaCompras")
+    private Collection<UsuarioLista> usuarioListaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "listaCompras")
+    private Collection<ListaItem> listaItemCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -86,6 +98,32 @@ public class ListaCompras implements Serializable {
     @Override
     public String toString() {
         return "ejb.ListaCompras[ id=" + id + " ]";
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    @XmlTransient
+    public Collection<UsuarioLista> getUsuarioListaCollection() {
+        return usuarioListaCollection;
+    }
+
+    public void setUsuarioListaCollection(Collection<UsuarioLista> usuarioListaCollection) {
+        this.usuarioListaCollection = usuarioListaCollection;
+    }
+
+    @XmlTransient
+    public Collection<ListaItem> getListaItemCollection() {
+        return listaItemCollection;
+    }
+
+    public void setListaItemCollection(Collection<ListaItem> listaItemCollection) {
+        this.listaItemCollection = listaItemCollection;
     }
     
 }
