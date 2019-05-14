@@ -66,7 +66,7 @@ public class UsuarioFachada {
 
         try {
             Usuario usuario = (Usuario) em.createQuery(
-            "SELECT u from Usuario u where u.nomeUsuario = :login and u.senha = :senha")
+            "SELECT u FROM Usuario u WHERE u.login = :login AND u.senha = :senha")
          .setParameter("login", login)
                     .setParameter("senha", senha).getSingleResult();
 
