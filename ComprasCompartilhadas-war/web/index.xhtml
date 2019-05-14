@@ -15,6 +15,7 @@
            <p><h:outputLabel value = "Senha" /> </p>
            <p><h:inputSecret id="senha" value="#{usuarioMBean.usuario.senha}"/></p>
            <p><p:commandButton id="logar" value="Logar" action="#{usuarioMBean.logar()}" styleClass="ui-priority-primary"/></p>
+           <p><p:commandButton id="cadastrar" value="Cadastre-se" action="cadastra_usuario" styleClass="ui-priority-primary"/></p>
         </h:form>
         
     </h:body>

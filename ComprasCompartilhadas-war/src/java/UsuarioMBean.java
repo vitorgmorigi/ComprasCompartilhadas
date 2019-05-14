@@ -74,9 +74,9 @@ public class UsuarioMBean {
          null,
          new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário não encontrado!",
            "Erro no Login!"));
-      return "index2";
+      return "index";
     } else {
-          return "exibe_usuarios";
+          return "menu_logado";
     }
     
          
