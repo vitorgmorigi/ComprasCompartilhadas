@@ -8,15 +8,18 @@ import ejb.Usuario;
 import ejb.UsuarioFachada;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
  * @author 55489
  */
 @ManagedBean (name = "usuarioMBean")
-@SessionScoped
+@ViewScoped
 public class UsuarioMBean {
 
     @EJB
@@ -62,6 +65,24 @@ public class UsuarioMBean {
     }
 
     
+    public String logar() {
+         
+    usuario = usuarioFachada.getUsuario(usuario.getLogin(), usuario.getSenha());
+    if (usuario == null) {
+      usuario = new Usuario();
+      FacesContext.getCurrentInstance().addMessage(
+         null,
+         new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário não encontrado!",
+           "Erro no Login!"));
+      return "index2";
+    } else {
+          return "exibe_usuarios";
+    }
     
+         
+         
+  }
+    
+  
 
 }
