@@ -72,7 +72,7 @@ public class UsuarioMBean {
       usuario = new Usuario();
       FacesContext.getCurrentInstance().addMessage(
          null,
-         new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário não encontrado!",
+         new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário não encontrado/Senha incorreta!",
            "Erro no Login!"));
       return "index";
     } else {

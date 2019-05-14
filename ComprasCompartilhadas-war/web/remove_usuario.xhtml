@@ -11,15 +11,19 @@
      <h:form>
            <p:dataTable var="usuario" value="#{usuarioMBean.listaUsuarios}">
                    <p:column headerText="Id">
-                      <h:outputText value="#{usuario.id}" />
+                      <h:inputText value="#{usuario.id}" />
                    </p:column>
                    <p:column headerText="Nome">
-                      <h:outputText value="#{usuario.login}" /> 
+                      <h:inputText value="#{usuario.login}" /> 
                    </p:column>
                    <p:column headerText="E-mail">
-                      <h:outputText value="#{usuario.email}" />
+                      <h:inputText value="#{usuario.email}" />
+                   </p:column>
+                   <p:column headerText="Senha">
+                       <h:inputSecret value="#{usuario.senha}" />
                    </p:column>
                    <p:column headerText="Ações">
+                       <h:commandButton value="Editar" action="#{usuarioMBean.salvarUsuario()}" />
                        <h:commandButton value="Remover" action="#{usuarioMBean.removerUsuario(usuario.id)}" />
                    </p:column>
              </p:dataTable>

@@ -16,10 +16,13 @@
                 <h4><h:outputText value="Bem vindo ao sistema! Selecione a opção desejada:"/></h4>
             </h:form>
             
-            
-            <p><p:commandButton id="criaListaCompras" value="Criar Lista de Compras" action="cria_lista_compras"/></p>
-            <p><p:commandButton id="exibeListaCompras" value="Exibir Listas criadas" action="exibe_lista_compras"/></p>
-           
+            <h:form>
+                <p><p:commandButton id="criaListaCompras" value="Criar Lista de Compras" action="cria_lista_compras"/></p>
+                <p><p:commandButton id="exibeListaCompras" value="Exibir Listas criadas" action="exibe_lista_compras"/></p>
+                <p><p:commandButton id="alteraUsuario" value="Alterar dados cadastrais" action="remove_usuario"/></p>
+                <p><p:commandButton id="logout" value="Fazer Logout" action="index"/></p>
+            </h:form>
+
         </f:view>
     </h:body>
 </html>
