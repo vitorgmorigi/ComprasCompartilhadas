@@ -37,8 +37,11 @@ public class ListaComprasFachada {
 
        Query query = em.createNativeQuery("SELECT MAX(id) FROM LISTA_COMPRAS");
        BigDecimal a = (BigDecimal) query.getSingleResult();
-       int b = a.intValue();
-       return b;
+       if (a != null) {
+            return a.intValue();
+        } else {
+            return 0;
+        }
     }
  
     public void criaListaCompras(ListaCompras listaCompras) {  // Cadastra o produto 

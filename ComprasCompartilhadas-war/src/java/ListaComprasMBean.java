@@ -47,16 +47,16 @@ public class ListaComprasMBean {
     public String criaListaCompras(){
         lcFachada.criaListaCompras(listaCompras);
         listaCompras = new ListaCompras();
-        return "index";
+        return "menu_logado";
     }
     
     public String salvaListaCompras(){
         lcFachada.salvarListaCompras(listaCompras);
-        return "index";
+        return "menu_logado";
     }
     
     public String removerListaCompras(Integer listaComprasID){
         lcFachada.removerListaCompras(listaComprasID);
-        return "index";
+        return "menu_logado";
     }
 }

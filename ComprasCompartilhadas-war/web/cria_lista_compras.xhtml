@@ -12,17 +12,17 @@
         <h:form>
            <p><h3>Cadastrar Lista</h3></p>
            <p><h:outputLabel value = "Id" /> </p>
-           <p><h:inputText id="login" value="#{listaComprasMBean.listaCompras.id}"/></p>
+           <p><h:inputText id="idLista" value="#{listaComprasMBean.listaCompras.idUsuario}"/></p>
            
            <p><h:outputLabel value = "Nome" /></p>
-           <p><h:inputText id="email" value="#{listaComprasMBean.listaCompras.nome}"/></p>
+           <p><h:inputText id="nomeLista" value="#{listaComprasMBean.listaCompras.nome}"/></p>
 
-           <p:commandButton id="cadastrar" value="Cadastrar" action="#{listaComprasMBean.criaListaCompras()}" styleClass="ui-priority-primary"/>           
+           <p:commandButton id="cadastrarLista" value="Cadastrar" action="#{listaComprasMBean.criaListaCompras()}" styleClass="ui-priority-primary"/>           
 
         </h:form>
         
         <h:form>
-            <p><p:link id="voltar" value="Voltar" outcome="index" styleClass="ui-priority-primary"/></p>
+            <p><p:link id="voltar" value="Voltar" outcome="menu_logado" styleClass="ui-priority-primary"/></p>
         </h:form> 
 
     </h:body>

@@ -10,8 +10,6 @@
     <h:body>
      <h:form>
             <p><h1>Editar cliente:</h1></p>
-            <p><p:outputLabel value = "Id" /> </p>
-            <p><p:inputText title="id" value="#{usuarioMBean.usuario.id}" /></p>
             <p><p:outputLabel value = "Login" /> </p>
             <p><p:inputText title="nome" value="#{usuarioMBean.usuario.login}" /></p>
             <p><p:outputLabel value = "E-mail" /> </p>
@@ -23,7 +21,7 @@
         
         <h:form>
             <p><p:link id="voltarLista" value="Voltar para lista de usuários" outcome="exibe_usuarios" styleClass="ui-priority-primary"/></p>
-            <p><p:link id="voltarInicio" value="Voltar para tela inicial" outcome="index" styleClass="ui-priority-primary"/></p>
+            <p><p:link id="voltarInicio" value="Voltar para tela anterior" outcome="menu_logado" styleClass="ui-priority-primary"/></p>
         </h:form>         
     </h:body>
 </html>
