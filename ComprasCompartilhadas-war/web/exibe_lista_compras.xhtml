@@ -13,7 +13,7 @@
                 <h1><h:outputText value="Lista de Compras"/></h1>
                 <p:dataTable var="listaCompras" value="#{listaComprasMBean.getListasCompras()}">
                    <p:column headerText="Id">
-                       <h:inputText value="#{listaCompras.idUsuario}" />
+                       <h:inputText value="#{listaCompras.id}" />
                    </p:column>
                    <p:column headerText="Nome">
                        <h:inputText value="#{listaCompras.nome}" />

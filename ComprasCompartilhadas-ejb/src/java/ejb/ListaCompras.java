@@ -12,6 +12,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -30,9 +33,16 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ListaCompras.findAll", query = "SELECT l FROM ListaCompras l")
-    , @NamedQuery(name = "ListaCompras.findById", query = "SELECT l FROM ListaCompras l WHERE l.id = :id")
-    , @NamedQuery(name = "ListaCompras.findByIdUsuario", query = "SELECT l FROM ListaCompras l WHERE l.idUsuario = :idUsuario")})
+    , @NamedQuery(name = "ListaCompras.findById", query = "SELECT l FROM ListaCompras l WHERE l.id = :id")})
 public class ListaCompras implements Serializable {
+
+    @JoinTable(name = "USUARIO_LISTA", joinColumns = {
+        @JoinColumn(name = "ID_LISTA", referencedColumnName = "ID")}, inverseJoinColumns = {
+        @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID")})
+    @ManyToMany
+    private Collection<ListaCompras> listaComprasCollection;
+    @ManyToMany(mappedBy = "listaComprasCollection")
+    private Collection<ListaCompras> listaComprasCollection1;
 
     @Size(max = 255)
     @Column(name = "NOME")
@@ -49,8 +59,8 @@ public class ListaCompras implements Serializable {
     @Column(name = "ID")
     private Integer id;
     @Size(max = 255)
-    @Column(name = "ID_USUARIO")
-    private String idUsuario;
+//    @Column(name = "ID_USUARIO")
+//    private String idUsuario;
 
     public ListaCompras() {
     }
@@ -67,13 +77,13 @@ public class ListaCompras implements Serializable {
         this.id = id;
     }
 
-    public String getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(String idUsuario) {
-        this.idUsuario = idUsuario;
-    }
+//    public String getIdUsuario() {
+//        return idUsuario;
+//    }
+//
+//    public void setIdUsuario(String idUsuario) {
+//        this.idUsuario = idUsuario;
+//    }
 
     @Override
     public int hashCode() {
@@ -124,6 +134,24 @@ public class ListaCompras implements Serializable {
 
     public void setListaItemCollection(Collection<ListaItem> listaItemCollection) {
         this.listaItemCollection = listaItemCollection;
+    }
+
+    @XmlTransient
+    public Collection<ListaCompras> getListaComprasCollection() {
+        return listaComprasCollection;
+    }
+
+    public void setListaComprasCollection(Collection<ListaCompras> listaComprasCollection) {
+        this.listaComprasCollection = listaComprasCollection;
+    }
+
+    @XmlTransient
+    public Collection<ListaCompras> getListaComprasCollection1() {
+        return listaComprasCollection1;
+    }
+
+    public void setListaComprasCollection1(Collection<ListaCompras> listaComprasCollection1) {
+        this.listaComprasCollection1 = listaComprasCollection1;
     }
     
 }
