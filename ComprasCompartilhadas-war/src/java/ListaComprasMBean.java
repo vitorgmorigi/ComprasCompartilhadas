@@ -21,8 +21,10 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name = "listaComprasMBean")
 @SessionScoped
 public class ListaComprasMBean {
-     @EJB
+    @EJB
     private ListaComprasFachada lcFachada;
+    
+    @EJB
     private UsuarioListaFachada ulFachada;
 
     
@@ -48,13 +50,19 @@ public class ListaComprasMBean {
         this.listaCompras = listaCompras;
     }
     
-    public String criaListaCompras(Usuario usuario){
-        UsuarioLista usuarioLista = new UsuarioLista();
+    public String criaListaCompras(Usuario usuario, ListaCompras listaCompras){
         lcFachada.criaListaCompras(listaCompras);
-        usuarioLista.setUsuario(usuario);
-        usuarioLista.setListaCompras(listaCompras);
-        ulFachada.criaEVinculaListaAoUsuario(usuarioLista);
+        System.out.println(usuario.getId());
+        System.out.println(listaCompras.getId());
+        UsuarioLista usuarioLista = new UsuarioLista(usuario.getId(), listaCompras.getId());
+        System.out.println(usuarioLista.toString());
+        ulFachada.vinculaListaAoUsuario(usuarioLista);
         listaCompras = new ListaCompras();
+//        lcFachada.criaListaCompras(listaCompras);
+//        usuarioLista.setUsuario(usuario);
+//        usuarioLista.setListaCompras(listaCompras);
+//        ulFachada.criaEVinculaListaAoUsuario(usuarioLista);
+//        listaCompras = new ListaCompras();
         return "menu_logado";
     }
     

@@ -28,7 +28,7 @@ public class UsuarioListaFachada {
     
 
     
-    public void criaEVinculaListaAoUsuario(UsuarioLista usuarioLista)
+    public void vinculaListaAoUsuario(UsuarioLista usuarioLista)
     {
         em.persist(usuarioLista);
     }
