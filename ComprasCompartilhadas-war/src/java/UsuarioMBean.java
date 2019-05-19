@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 
+import ejb.ListaCompras;
 import ejb.Usuario;
 import ejb.UsuarioFachada;
+import ejb.UsuarioLista;
+import ejb.UsuarioListaFachada;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -78,10 +81,18 @@ public class UsuarioMBean {
             System.out.println(usuario.getLogin());
           return "menu_logado";
     }
-    
-         
-         
+      
   }
+    
+    public String criarLista(ListaCompras listaCompras){
+        
+        UsuarioLista usuarioLista = new UsuarioLista();
+        
+        usuarioLista.setUsuario(usuario);
+        usuarioLista.setListaCompras(listaCompras);
+        
+        return "menu_logado";
+    }
     
   
 

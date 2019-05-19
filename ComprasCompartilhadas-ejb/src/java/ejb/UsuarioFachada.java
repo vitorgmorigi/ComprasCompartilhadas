@@ -76,6 +76,19 @@ public class UsuarioFachada {
         }
     }
     
+    public Usuario getUsuarioById(Integer id) {
+
+        try {
+            Usuario usuario = (Usuario) em.createQuery(
+            "SELECT u FROM Usuario u WHERE u.id = :id ")
+         .setParameter("id", id);
+
+            return usuario;
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")

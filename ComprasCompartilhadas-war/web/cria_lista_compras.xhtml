@@ -14,8 +14,7 @@
            
            <p><h:outputLabel value = "Nome" /></p>
            <p><h:inputText id="nomeLista" value="#{listaComprasMBean.listaCompras.nome}"/></p>
-
-           <p:commandButton id="cadastrarLista" value="Cadastrar" action="#{listaComprasMBean.criaListaCompras()}" styleClass="ui-priority-primary"/>           
+           <p:commandButton id="cadastrarLista" value="Cadastrar" action="#{usuarioListaMBean.criaListaCompras(usuarioMBean.usuario, listaComprasMBean.listaCompras)}" styleClass="ui-priority-primary"/>           
 
         </h:form>
         

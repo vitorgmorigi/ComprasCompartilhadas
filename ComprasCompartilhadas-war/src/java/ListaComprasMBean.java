@@ -6,6 +6,9 @@
 
 import ejb.ListaCompras;
 import ejb.ListaComprasFachada;
+import ejb.Usuario;
+import ejb.UsuarioLista;
+import ejb.UsuarioListaFachada;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -20,6 +23,7 @@ import javax.faces.bean.SessionScoped;
 public class ListaComprasMBean {
      @EJB
     private ListaComprasFachada lcFachada;
+    private UsuarioListaFachada ulFachada;
 
     
     private ListaCompras listaCompras = new ListaCompras();  // Guarda os dados do formulário
@@ -44,8 +48,12 @@ public class ListaComprasMBean {
         this.listaCompras = listaCompras;
     }
     
-    public String criaListaCompras(){
+    public String criaListaCompras(Usuario usuario){
+        UsuarioLista usuarioLista = new UsuarioLista();
         lcFachada.criaListaCompras(listaCompras);
+        usuarioLista.setUsuario(usuario);
+        usuarioLista.setListaCompras(listaCompras);
+        ulFachada.criaEVinculaListaAoUsuario(usuarioLista);
         listaCompras = new ListaCompras();
         return "menu_logado";
     }

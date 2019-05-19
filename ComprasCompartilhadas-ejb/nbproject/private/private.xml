@@ -3,10 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/55489/Documents/GitHub/ComprasCompartilhadas/ComprasCompartilhadas-ejb/src/java/ejb/UsuarioLista.java</file>
+            <file>file:/C:/Users/55489/Documents/GitHub/ComprasCompartilhadas/ComprasCompartilhadas-ejb/src/java/ejb/ListaItem.java</file>
+            <file>file:/C:/Users/55489/Documents/GitHub/ComprasCompartilhadas/ComprasCompartilhadas-ejb/src/java/ejb/ListaItemPK.java</file>
+            <file>file:/C:/Users/55489/Documents/GitHub/ComprasCompartilhadas/ComprasCompartilhadas-ejb/src/java/ejb/UsuarioListaPK.java</file>
             <file>file:/C:/Users/55489/Documents/GitHub/ComprasCompartilhadas/ComprasCompartilhadas-ejb/src/java/ejb/Usuario.java</file>
             <file>file:/C:/Users/55489/Documents/GitHub/ComprasCompartilhadas/ComprasCompartilhadas-ejb/src/java/ejb/ListaComprasFachada.java</file>
             <file>file:/C:/Users/55489/Documents/GitHub/ComprasCompartilhadas/ComprasCompartilhadas-ejb/src/java/ejb/ListaCompras.java</file>
             <file>file:/C:/Users/55489/Documents/GitHub/ComprasCompartilhadas/ComprasCompartilhadas-ejb/src/java/ejb/UsuarioFachada.java</file>
+            <file>file:/C:/Users/55489/Documents/GitHub/ComprasCompartilhadas/ComprasCompartilhadas-ejb/src/java/ejb/Item.java</file>
         </group>
     </open-files>
 </project-private>
