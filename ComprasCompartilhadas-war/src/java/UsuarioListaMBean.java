@@ -13,6 +13,7 @@ import ejb.UsuarioListaFachada;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 
 /**
@@ -26,31 +27,18 @@ public class UsuarioListaMBean implements Serializable {
     @EJB
     private UsuarioListaFachada ulFachada;
     
-    @EJB
-    private ListaComprasFachada lcFachada;
-    
-    @EJB
-    private UsuarioFachada uFachada;
-    
     private UsuarioLista usuarioLista = new UsuarioLista();
      
-   
-//        public String criaListaCompras(Usuario usuario, ListaCompras listaCompras){
-//        lcFachada.criaListaCompras(listaCompras);
-//        System.out.println("ID DO USUARIO:" + usuario.getId());
-//        System.out.println("ID DA LISTA:" + listaCompras.getId());
-//        UsuarioLista usuarioLista = new UsuarioLista(usuario.getId(), listaCompras.getId());
-////        usuarioLista.setUsuario(usuario);
-////        usuarioLista.setListaCompras(listaCompras);
-//        ulFachada.criaEVinculaListaAoUsuario(usuarioLista);
-//        return "menu_logado";
-//    }
     
     public UsuarioListaMBean() {
     }
     
     public void vinculaListaAUsuario(UsuarioLista usuarioLista){
          ulFachada.vinculaListaAoUsuario(usuarioLista);
+    }
+    
+        public List<ListaCompras> getListasUsuario(Integer idUsuario) {
+        return ulFachada.getListasUsuario(idUsuario);
     }
     
 }

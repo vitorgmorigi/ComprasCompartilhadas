@@ -52,17 +52,10 @@ public class ListaComprasMBean {
     
     public String criaListaCompras(Usuario usuario, ListaCompras listaCompras){
         lcFachada.criaListaCompras(listaCompras);
-        System.out.println(usuario.getId());
-        System.out.println(listaCompras.getId());
         UsuarioLista usuarioLista = new UsuarioLista(usuario.getId(), listaCompras.getId());
         System.out.println(usuarioLista.toString());
         ulFachada.vinculaListaAoUsuario(usuarioLista);
         listaCompras = new ListaCompras();
-//        lcFachada.criaListaCompras(listaCompras);
-//        usuarioLista.setUsuario(usuario);
-//        usuarioLista.setListaCompras(listaCompras);
-//        ulFachada.criaEVinculaListaAoUsuario(usuarioLista);
-//        listaCompras = new ListaCompras();
         return "menu_logado";
     }
     

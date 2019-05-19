@@ -11,12 +11,12 @@
         <f:view>
             <h:form>
                 <h1><h:outputText value="Lista de Compras"/></h1>
-                <p:dataTable var="listaCompras" value="#{listaComprasMBean.getListasCompras()}">
+                <p:dataTable var="listaCompras" value="#{usuarioListaMBean.getListasUsuario(usuarioMBean.usuario.id)}">
                    <p:column headerText="Id">
-                       <h:inputText value="#{listaCompras.id}" />
+                       <h:inputText value="#{listaComprasMBean.listaCompras.id}" />
                    </p:column>
                    <p:column headerText="Nome">
-                       <h:inputText value="#{listaCompras.nome}" />
+                       <h:inputText value="#{listaComprasMBean.listaCompras.nome}" />
                    </p:column>
                 </p:dataTable>
             </h:form>

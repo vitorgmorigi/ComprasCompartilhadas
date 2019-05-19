@@ -5,11 +5,13 @@
  */
 package ejb;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -31,6 +33,15 @@ public class UsuarioListaFachada {
     public void vinculaListaAoUsuario(UsuarioLista usuarioLista)
     {
         em.persist(usuarioLista);
+    }
+    
+    public List<ListaCompras> getListasUsuario(Integer idUsuario)
+    {
+        Query query = em.createQuery("SELECT l.id, l.nome FROM UsuarioLista u JOIN ListaCompras l ON u.usuarioListaPK.idLista = l.id WHERE u.usuarioListaPK.idUsuario = :idUsuario")
+                .setParameter("idUsuario", idUsuario);
+        
+        List<ListaCompras> result = query.getResultList();
+        return result;
     }
     
     
