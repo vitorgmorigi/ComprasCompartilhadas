@@ -11,7 +11,6 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 /**
@@ -19,7 +18,7 @@ import javax.faces.context.FacesContext;
  * @author 55489
  */
 @ManagedBean (name = "usuarioMBean")
-@ViewScoped
+@SessionScoped
 public class UsuarioMBean {
 
     @EJB
@@ -55,7 +54,7 @@ public class UsuarioMBean {
     }
     
     public String salvarUsuario() {
-        usuarioFachada.salvarUsuario(this.usuario);
+        usuarioFachada.salvarUsuario(usuario);
         return "index";
     }
 
