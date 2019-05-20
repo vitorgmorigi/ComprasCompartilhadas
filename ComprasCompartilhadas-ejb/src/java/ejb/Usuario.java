@@ -12,6 +12,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -37,8 +40,11 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Usuario.getUsuario", query = "SELECT u FROM Usuario u WHERE u.senha = :senha AND u.login = :login")})
 public class Usuario implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-    private Collection<UsuarioLista> usuarioListaCollection;
+    @JoinTable(name = "USUARIO_LISTA", joinColumns = {
+        @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID")}, inverseJoinColumns = {
+        @JoinColumn(name = "ID_LISTA", referencedColumnName = "ID")})
+    @ManyToMany
+    private Collection<ListaCompras> listaComprasCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -131,13 +137,19 @@ public class Usuario implements Serializable {
         return "ejb.Usuario[ id=" + id + " ]";
     }
 
+    
+
     @XmlTransient
-    public Collection<UsuarioLista> getUsuarioListaCollection() {
-        return usuarioListaCollection;
+    public Collection<ListaCompras> getListaComprasCollection() {
+        return listaComprasCollection;
     }
 
-    public void setUsuarioListaCollection(Collection<UsuarioLista> usuarioListaCollection) {
-        this.usuarioListaCollection = usuarioListaCollection;
+    public void setListaComprasCollection(Collection<ListaCompras> listaComprasCollection) {
+        this.listaComprasCollection = listaComprasCollection;
+    }
+    
+    public void removeLista(ListaCompras lista){
+        listaComprasCollection.remove(lista);
     }
     
 }

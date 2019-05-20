@@ -3,24 +3,48 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Lista de Compras</title>
     </h:head>
     <h:body>
-        <f:view>
-            <h:form>
-                <h1><h:outputText value="Lista de Compras"/></h1>
-                <p:dataTable var="listaCompras" value="#{usuarioListaMBean.getListasUsuario(usuarioMBean.usuario.id)}">
-                   <p:column headerText="Id">
-                       <h:inputText value="#{listaComprasMBean.listaCompras.id}" />
-                   </p:column>
-                   <p:column headerText="Nome">
-                       <h:inputText value="#{listaComprasMBean.listaCompras.nome}" />
-                   </p:column>
-                </p:dataTable>
-            </h:form>
-         <p><p:link id="voltar" value="Voltar" outcome="menu_logado"/></p>
-         </f:view>
-       </h:body>
+        <c:forEach items="#{usuarioMBean.usuario.getListaComprasCollection()}" var="lista">
+            <div>
+                <f:view>
+                    <h:form>
+                        <h1><h:outputText value="Lista de Compras - #{lista.nome}"/></h1>
+                        <h2>Itens</h2>
+                        <p:dataTable var="item" value="#{lista.getItemCollection()}">
+                           <p:column headerText="Nome">
+                              <h:outputText value="#{item.nome}" /> 
+                           </p:column>
+                           <p:column headerText="Quantidade">
+                              <h:inputText value="#{item.quantidade}" /> 
+                           </p:column>
+                           <p:column headerText="Ações">
+                              <h:commandButton value="Editar" action="#{listaComprasMBean.atualizarItem(item)}" />
+                              <h:commandButton value="Remover" action="#{listaComprasMBean.removerItem(lista, item)}" />
+                           </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </f:view>
+                <h:form>
+                    <h3>Novo item</h3>
+                    <p>Nome
+                    <p:inputText title="Nome:" value="#{listaComprasMBean.item.nome}" />
+                    Quantidade
+                    <p:inputText label="email" value="#{listaComprasMBean.item.quantidade}" />
+                    <h:commandButton value="Cadastrar" id="cadastrar2" action="#{listaComprasMBean.adicionarItem(lista)}" styleClass="ui-priority-primary"/></p>
+                </h:form>
+            </div>
+        </c:forEach>
+        <h:form>
+            <h3>Remover Lista</h3>
+            <p>Nome
+            <p:inputText title="Nome:" value="#{listaComprasMBean.listaCompras.nome}" />
+            <h:commandButton value="Remover Lista" id="removeLista" action="#{listaComprasMBean.removerListaCompras(listaCompras.nome)}" styleClass="ui-priority-primary"/></p>
+        </h:form>
+        <p><p:link id="voltar" value="Voltar para tela anterior" outcome="menu_logado" styleClass="ui-priority-primary"/></p>
+    </h:body>
 </html>

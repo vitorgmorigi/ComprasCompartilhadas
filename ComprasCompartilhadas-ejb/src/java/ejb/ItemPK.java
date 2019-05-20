@@ -13,26 +13,34 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author 55489
+ * @author Igor Glatz
  */
 @Embeddable
-public class ListaItemPK implements Serializable {
+public class ItemPK implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "ID")
+    private int id;
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID_LISTA")
     private int idLista;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID_ITEM")
-    private int idItem;
 
-    public ListaItemPK() {
+    public ItemPK() {
     }
 
-    public ListaItemPK(int idLista, int idItem) {
+    public ItemPK(int id, int idLista) {
+        this.id = id;
         this.idLista = idLista;
-        this.idItem = idItem;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getIdLista() {
@@ -43,33 +51,25 @@ public class ListaItemPK implements Serializable {
         this.idLista = idLista;
     }
 
-    public int getIdItem() {
-        return idItem;
-    }
-
-    public void setIdItem(int idItem) {
-        this.idItem = idItem;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
+        hash += (int) id;
         hash += (int) idLista;
-        hash += (int) idItem;
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ListaItemPK)) {
+        if (!(object instanceof ItemPK)) {
             return false;
         }
-        ListaItemPK other = (ListaItemPK) object;
+        ItemPK other = (ItemPK) object;
+        if (this.id != other.id) {
+            return false;
+        }
         if (this.idLista != other.idLista) {
-            return false;
-        }
-        if (this.idItem != other.idItem) {
             return false;
         }
         return true;
@@ -77,7 +77,7 @@ public class ListaItemPK implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.ListaItemPK[ idLista=" + idLista + ", idItem=" + idItem + " ]";
+        return "ejb.ItemPK[ id=" + id + ", idLista=" + idLista + " ]";
     }
     
 }

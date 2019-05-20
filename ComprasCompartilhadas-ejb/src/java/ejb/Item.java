@@ -6,66 +6,74 @@
 package ejb;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 55489
+ * @author Igor Glatz
  */
 @Entity
-@Table(name = "ITEM", schema = "APP" )
+@Table(name = "ITEM")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Item.findAll", query = "SELECT i FROM Item i")
-    , @NamedQuery(name = "Item.findById", query = "SELECT i FROM Item i WHERE i.id = :id")
-    , @NamedQuery(name = "Item.findByNome", query = "SELECT i FROM Item i WHERE i.nome = :nome")})
+    , @NamedQuery(name = "Item.findById", query = "SELECT i FROM Item i WHERE i.itemPK.id = :id")
+    , @NamedQuery(name = "Item.findByNome", query = "SELECT i FROM Item i WHERE i.nome = :nome")
+    , @NamedQuery(name = "Item.findByIdLista", query = "SELECT i FROM Item i WHERE i.itemPK.idLista = :idLista")
+    , @NamedQuery(name = "Item.findByQuantidade", query = "SELECT i FROM Item i WHERE i.quantidade = :quantidade")})
 public class Item implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID")
-    private Integer id;
+    @EmbeddedId
+    protected ItemPK itemPK;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "NOME")
     private String nome;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
-    private Collection<ListaItem> listaItemCollection;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "QUANTIDADE")
+    private String quantidade;
+    @JoinColumn(name = "ID_LISTA", referencedColumnName = "ID", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private ListaCompras listaCompras;
 
     public Item() {
     }
 
-    public Item(Integer id) {
-        this.id = id;
+    public Item(ItemPK itemPK) {
+        this.itemPK = itemPK;
     }
 
-    public Item(Integer id, String nome) {
-        this.id = id;
+    public Item(ItemPK itemPK, String nome, String quantidade) {
+        this.itemPK = itemPK;
         this.nome = nome;
+        this.quantidade = quantidade;
     }
 
-    public Integer getId() {
-        return id;
+    public Item(int id, int idLista) {
+        this.itemPK = new ItemPK(id, idLista);
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public ItemPK getItemPK() {
+        return itemPK;
+    }
+
+    public void setItemPK(ItemPK itemPK) {
+        this.itemPK = itemPK;
     }
 
     public String getNome() {
@@ -76,19 +84,26 @@ public class Item implements Serializable {
         this.nome = nome;
     }
 
-    @XmlTransient
-    public Collection<ListaItem> getListaItemCollection() {
-        return listaItemCollection;
+    public String getQuantidade() {
+        return quantidade;
     }
 
-    public void setListaItemCollection(Collection<ListaItem> listaItemCollection) {
-        this.listaItemCollection = listaItemCollection;
+    public void setQuantidade(String quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public ListaCompras getListaCompras() {
+        return listaCompras;
+    }
+
+    public void setListaCompras(ListaCompras listaCompras) {
+        this.listaCompras = listaCompras;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (itemPK != null ? itemPK.hashCode() : 0);
         return hash;
     }
 
@@ -99,7 +114,7 @@ public class Item implements Serializable {
             return false;
         }
         Item other = (Item) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.itemPK == null && other.itemPK != null) || (this.itemPK != null && !this.itemPK.equals(other.itemPK))) {
             return false;
         }
         return true;
@@ -107,7 +122,7 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.Item[ id=" + id + " ]";
+        return "ejb.Item[ itemPK=" + itemPK + " ]";
     }
     
 }

@@ -29,16 +29,11 @@ public class UsuarioListaMBean implements Serializable {
     
     private UsuarioLista usuarioLista = new UsuarioLista();
      
-    
     public UsuarioListaMBean() {
     }
     
     public void vinculaListaAUsuario(UsuarioLista usuarioLista){
          ulFachada.vinculaListaAoUsuario(usuarioLista);
-    }
-    
-        public List<ListaCompras> getListasUsuario(Integer idUsuario) {
-        return ulFachada.getListasUsuario(idUsuario);
     }
     
 }

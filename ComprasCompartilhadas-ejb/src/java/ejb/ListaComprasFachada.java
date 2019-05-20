@@ -43,9 +43,16 @@ public class ListaComprasFachada {
             return 0;
         }
     }
+    
+    public ListaCompras getListaByNome(String nome){
+        Query query = em.createNamedQuery("ListaCompras.findByNome");
+        query.setParameter(":nome", nome);
+        ListaCompras lc = (ListaCompras)query.getSingleResult();
+        return lc;
+    }
  
-    public void criaListaCompras(ListaCompras listaCompras) {  // Cadastra o produto 
-       listaCompras.setId(getMaxId()+1);
+    public void criaListaCompras(Usuario usuario, ListaCompras listaCompras) {  // Cadastra o produto 
+       usuario.getListaComprasCollection().add(listaCompras);
        em.persist(listaCompras);
     }
 
@@ -54,9 +61,11 @@ public class ListaComprasFachada {
         em.flush();
     }
 
-    public void removerListaCompras(Integer listaComprasID) {
-            em.remove(em.find(ListaCompras.class, listaComprasID));
+    public void removerListaCompras(String nome) {
+        em.remove(em.find(ListaCompras.class, nome));
     }
+    
+    
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 }

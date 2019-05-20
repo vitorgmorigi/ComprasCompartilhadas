@@ -4,11 +4,15 @@
  * and open the template in the editor.
  */
 
+import ejb.Item;
+import ejb.ItemFachada;
 import ejb.ListaCompras;
 import ejb.ListaComprasFachada;
 import ejb.Usuario;
+import ejb.UsuarioFachada;
 import ejb.UsuarioLista;
 import ejb.UsuarioListaFachada;
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -25,9 +29,12 @@ public class ListaComprasMBean {
     private ListaComprasFachada lcFachada;
     
     @EJB
+    private ItemFachada iFachada;
+    
+    @EJB
     private UsuarioListaFachada ulFachada;
 
-    
+    private Item item = new Item();
     private ListaCompras listaCompras = new ListaCompras();  // Guarda os dados do formulário
     
     
@@ -41,6 +48,14 @@ public class ListaComprasMBean {
     public ListaComprasMBean() {
         
     }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
     
     public ListaCompras getListaCompras(){
         return listaCompras;
@@ -51,11 +66,10 @@ public class ListaComprasMBean {
     }
     
     public String criaListaCompras(Usuario usuario, ListaCompras listaCompras){
-        lcFachada.criaListaCompras(listaCompras);
+        listaCompras.setId(lcFachada.getMaxId() + 1);
+        lcFachada.criaListaCompras(usuario, listaCompras);
         UsuarioLista usuarioLista = new UsuarioLista(usuario.getId(), listaCompras.getId());
-        System.out.println(usuarioLista.toString());
         ulFachada.vinculaListaAoUsuario(usuarioLista);
-        listaCompras = new ListaCompras();
         return "menu_logado";
     }
     
@@ -64,8 +78,24 @@ public class ListaComprasMBean {
         return "menu_logado";
     }
     
-    public String removerListaCompras(Integer listaComprasID){
-        lcFachada.removerListaCompras(listaComprasID);
+    public String removerListaCompras(String nome){
+        lcFachada.removerListaCompras(nome);
+        listaCompras = new ListaCompras();
         return "menu_logado";
+    }
+    
+    public String atualizarItem(Item item){
+        this.iFachada.salvarItem(item);
+        return "exibir_lista_compras";
+    }
+    
+    public String adicionarItem(ListaCompras lista) {
+        this.iFachada.cadastrarItem(lista, this.item);
+        this.item = new Item();
+        return "exibir_lista_compras";
+    }
+    public String removerItem(ListaCompras lista, Item item) {
+        this.iFachada.removerItem(lista, item);
+        return "exibir_lista_compras";
     }
 }

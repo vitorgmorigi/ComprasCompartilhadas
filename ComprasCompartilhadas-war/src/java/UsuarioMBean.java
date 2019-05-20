@@ -83,17 +83,4 @@ public class UsuarioMBean {
     }
       
   }
-    
-//    public String criarLista(ListaCompras listaCompras){
-//        
-//        UsuarioLista usuarioLista = new UsuarioLista();
-//        
-//        usuarioLista.setUsuario(usuario);
-//        usuarioLista.setListaCompras(listaCompras);
-//        
-//        return "menu_logado";
-//    }
-    
-  
-
 }

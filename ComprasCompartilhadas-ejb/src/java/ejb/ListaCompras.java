@@ -12,8 +12,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -33,24 +31,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ListaCompras.findAll", query = "SELECT l FROM ListaCompras l")
-    , @NamedQuery(name = "ListaCompras.findById", query = "SELECT l FROM ListaCompras l WHERE l.id = :id")})
+    , @NamedQuery(name = "ListaCompras.findById", query = "SELECT l FROM ListaCompras l WHERE l.id = :id")
+    , @NamedQuery(name = "ListaCompras.findByNome", query = "SELECT l FROM ListaCompras l WHERE l.nome = :nome")})
 public class ListaCompras implements Serializable {
-
-    @JoinTable(name = "USUARIO_LISTA", joinColumns = {
-        @JoinColumn(name = "ID_LISTA", referencedColumnName = "ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID")})
-    @ManyToMany
-    private Collection<ListaCompras> listaComprasCollection;
-    @ManyToMany(mappedBy = "listaComprasCollection")
-    private Collection<ListaCompras> listaComprasCollection1;
-
-    @Size(max = 255)
-    @Column(name = "NOME")
-    private String nome;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "listaCompras")
-    private Collection<UsuarioLista> usuarioListaCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "listaCompras")
-    private Collection<ListaItem> listaItemCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -58,15 +41,26 @@ public class ListaCompras implements Serializable {
     @NotNull
     @Column(name = "ID")
     private Integer id;
-    @Size(max = 255)
-//    @Column(name = "ID_USUARIO")
-//    private String idUsuario;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "NOME")
+    private String nome;
+    @ManyToMany(mappedBy = "listaComprasCollection")
+    private Collection<Usuario> usuarioCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "listaCompras")
+    private Collection<Item> itemCollection;
 
     public ListaCompras() {
     }
 
     public ListaCompras(Integer id) {
         this.id = id;
+    }
+
+    public ListaCompras(Integer id, String nome) {
+        this.id = id;
+        this.nome = nome;
     }
 
     public Integer getId() {
@@ -77,13 +71,31 @@ public class ListaCompras implements Serializable {
         this.id = id;
     }
 
-//    public String getIdUsuario() {
-//        return idUsuario;
-//    }
-//
-//    public void setIdUsuario(String idUsuario) {
-//        this.idUsuario = idUsuario;
-//    }
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    @XmlTransient
+    public Collection<Usuario> getUsuarioCollection() {
+        return usuarioCollection;
+    }
+
+    public void setUsuarioCollection(Collection<Usuario> usuarioCollection) {
+        this.usuarioCollection = usuarioCollection;
+    }
+
+    @XmlTransient
+    public Collection<Item> getItemCollection() {
+        return itemCollection;
+    }
+
+    public void setItemCollection(Collection<Item> itemCollection) {
+        this.itemCollection = itemCollection;
+    }
 
     @Override
     public int hashCode() {
@@ -108,50 +120,6 @@ public class ListaCompras implements Serializable {
     @Override
     public String toString() {
         return "ejb.ListaCompras[ id=" + id + " ]";
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    @XmlTransient
-    public Collection<UsuarioLista> getUsuarioListaCollection() {
-        return usuarioListaCollection;
-    }
-
-    public void setUsuarioListaCollection(Collection<UsuarioLista> usuarioListaCollection) {
-        this.usuarioListaCollection = usuarioListaCollection;
-    }
-
-    @XmlTransient
-    public Collection<ListaItem> getListaItemCollection() {
-        return listaItemCollection;
-    }
-
-    public void setListaItemCollection(Collection<ListaItem> listaItemCollection) {
-        this.listaItemCollection = listaItemCollection;
-    }
-
-    @XmlTransient
-    public Collection<ListaCompras> getListaComprasCollection() {
-        return listaComprasCollection;
-    }
-
-    public void setListaComprasCollection(Collection<ListaCompras> listaComprasCollection) {
-        this.listaComprasCollection = listaComprasCollection;
-    }
-
-    @XmlTransient
-    public Collection<ListaCompras> getListaComprasCollection1() {
-        return listaComprasCollection1;
-    }
-
-    public void setListaComprasCollection1(Collection<ListaCompras> listaComprasCollection1) {
-        this.listaComprasCollection1 = listaComprasCollection1;
     }
     
 }
